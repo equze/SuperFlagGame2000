@@ -25,7 +25,8 @@ p{color:var(--mut);margin:6px 0}
 .bar i{display:block;height:100%;background:var(--ac);width:0;transition:width .2s}
 .flag{font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif;font-size:7.5rem;line-height:1.2;padding:8px 0 16px}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opts button{padding:16px 8px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;font:inherit;font-weight:600;cursor:pointer;min-height:64px}
+.opts button{padding:16px 8px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;font:inherit;font-weight:600;cursor:pointer;min-height:64px;animation:pop .15s ease-out both}
+.opts button:nth-child(2){animation-delay:.015s}.opts button:nth-child(3){animation-delay:.03s}.opts button:nth-child(4){animation-delay:.045s}
 .opts button.ok{background:var(--ok);border-color:var(--ok);color:#fff}
 .opts button.bad{background:var(--bad);border-color:var(--bad);color:#fff}
 .res .n{font-size:2.6rem;font-weight:800;margin:6px 0}
@@ -33,35 +34,63 @@ p{color:var(--mut);margin:6px 0}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0}
 .grid div{background:var(--bg);border-radius:10px;padding:8px}
 .grid b{display:block;font-size:1.15rem}
-h2{font-size:1.1rem;margin:20px 0 8px;text-align:left}
-details{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;padding:10px 12px}
-summary{cursor:pointer;font-weight:600;font-size:.92rem}
-summary small{display:block;color:var(--mut);font-weight:400}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.chips span{font-size:.82rem;padding:3px 8px;border-radius:20px;border:1px solid var(--bd)}
-.chips .y{border-color:var(--ok)}.chips .x{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,transparent)}
-.chips em{font-style:normal;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
-.empty{color:var(--mut);text-align:left}
-.cnt{margin-top:14px;text-align:left}.cnt label{display:block;font-weight:600;margin-bottom:6px}.cnt input{width:100%;accent-color:var(--ac)}
-.pre{display:flex;gap:6px;margin-top:8px}.pre button{flex:1;padding:7px 0;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:8px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.hide{display:none}
 @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
 @keyframes flagin{from{opacity:0;transform:translateX(26px) scale(.9)}to{opacity:1;transform:none}}
 @keyframes flash{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 55%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
-.flag.a{animation:flagin .16s ease-out}.opts button{animation:pop .15s ease-out both}.opts button:nth-child(2){animation-delay:.015s}.opts button:nth-child(3){animation-delay:.03s}.opts button:nth-child(4){animation-delay:.045s}#play.flash{animation:flash .3s}
-.sum{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sum div{border-radius:14px;padding:12px;color:#fff;text-align:left}.sum b{display:block;font-size:1.45rem;margin:2px 0}.sum small{opacity:.85;font-size:.78rem}
+.flag.a{animation:flagin .16s ease-out}
+#play.flash{animation:flash .3s}
+/* setup */
+.lv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;text-align:left}
+.lv button{padding:10px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;font:inherit;cursor:pointer;text-align:left}
+.lv button b{display:block;font-size:.98rem}
+.lv button small{color:var(--mut);font-size:.78rem}
+.lv button:last-child:nth-child(odd){grid-column:1/-1}
+.lv button.on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 12%,var(--bg))}
+.cnt{margin-top:16px;text-align:left}
+.cnt label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px}
+.cnt input{width:100%;accent-color:var(--ac)}
+.pre{display:flex;gap:6px;margin-top:8px}
+.pre button{flex:1;padding:7px 0;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:8px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.pre button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.info{margin-top:10px;font-size:.85rem;color:var(--mut);text-align:left;background:var(--bg);border-radius:10px;padding:8px 10px}
+.info b{color:var(--tx)}
+/* stats */
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sum div{border-radius:14px;padding:12px;color:#fff;text-align:left}
+.sum b{display:block;font-size:1.45rem;margin:2px 0}
+.sum small{opacity:.85;font-size:.78rem}
 .s1{background:linear-gradient(135deg,#6366f1,#8b5cf6)}.s2{background:linear-gradient(135deg,#f59e0b,#ef4444)}.s3{background:linear-gradient(135deg,#10b981,#06b6d4)}.s4{background:linear-gradient(135deg,#ec4899,#f43f5e)}
-.sec{display:flex;align-items:center;gap:8px;margin:24px 0 10px;font-size:1.1rem;font-weight:800}.sec i{font-style:normal;width:30px;height:30px;border-radius:9px;display:grid;place-items:center}
-.gm{border-left:5px solid var(--ok);padding:0;overflow:hidden}.gm.lose{border-left-color:var(--bad)}.gm.t1{border-left-color:#f59e0b;background:color-mix(in srgb,#f59e0b 12%,var(--card))}.gm.t2{border-left-color:#94a3b8}.gm.t3{border-left-color:#c2410c}
-.gm summary{list-style:none;display:flex;align-items:center;gap:12px;padding:12px}.gm summary::-webkit-details-marker{display:none}
-.rk{font-size:1.2rem;min-width:34px;text-align:center;font-weight:800;color:var(--mut)}.md{font-style:normal;font-size:1.6rem;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
-.mn{flex:1;min-width:0}.pt{font-size:1.3rem;font-weight:800}.pt span{font-size:.8rem;color:var(--mut);font-weight:600}
-.bg{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff;background:var(--ok);margin-left:8px;vertical-align:middle}.lose .bg{background:var(--bad)}
+.sec{display:flex;align-items:center;gap:8px;margin:24px 0 10px;font-size:1.1rem;font-weight:800}
+.sec i{font-style:normal;width:30px;height:30px;border-radius:9px;display:grid;place-items:center}
+.gm{background:var(--card);border:1px solid var(--bd);border-left:5px solid var(--ok);border-radius:14px;margin-bottom:8px;overflow:hidden}
+.gm.lose{border-left-color:var(--bad)}
+.gm.t1{border-left-color:#f59e0b;background:color-mix(in srgb,#f59e0b 12%,var(--card))}
+.gm.t2{border-left-color:#94a3b8}.gm.t3{border-left-color:#c2410c}
+.gm summary{list-style:none;display:flex;align-items:center;gap:12px;padding:12px;cursor:pointer}
+.gm summary::-webkit-details-marker{display:none}
+.rk{font-size:1.2rem;min-width:34px;text-align:center;font-weight:800;color:var(--mut)}
+.md{font-style:normal;font-size:1.6rem;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.mn{flex:1;min-width:0}
+.pt{font-size:1.3rem;font-weight:800}
+.pt span{font-size:.8rem;color:var(--mut);font-weight:600}
+.bg{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff;background:var(--ok);margin-left:8px;vertical-align:middle}
+.lose .bg{background:var(--bad)}
 .mt{display:flex;flex-wrap:wrap;gap:2px 12px;color:var(--mut);font-size:.82rem;margin-top:2px}
-.acc{height:6px;border-radius:3px;background:color-mix(in srgb,var(--bad) 35%,var(--bd));margin-top:8px;overflow:hidden}.acc i{display:block;height:100%;background:var(--ok)}
-.ch{color:var(--mut);font-size:1.4rem;transition:transform .15s}details[open] .ch{transform:rotate(90deg)}
-.er{padding:0 12px 8px;color:var(--bad);font-size:.85rem;font-weight:600}.er .md{font-size:1.1rem}
-.gm .chips{padding:0 12px 12px;margin:0}.chips .y{background:color-mix(in srgb,var(--ok) 14%,transparent)}
-.hide{display:none}
+.acc{height:6px;border-radius:3px;background:color-mix(in srgb,var(--bad) 35%,var(--bd));margin-top:8px;overflow:hidden}
+.acc i{display:block;height:100%;background:var(--ok)}
+.ch{color:var(--mut);font-size:1.4rem;transition:transform .15s}
+details[open] .ch{transform:rotate(90deg)}
+.er{padding:0 12px 8px;color:var(--bad);font-size:.85rem;font-weight:600}
+.body{padding:0 12px 12px}
+.errs{font-size:.85rem;color:var(--mut);margin-bottom:8px}
+.errs b{color:var(--tx)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:.82rem;padding:3px 8px;border-radius:20px;border:1px solid var(--bd)}
+.chips .y{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.chips .x{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,transparent)}
+.chips em{font-style:normal;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.empty{color:var(--mut);text-align:left}
 </style>
 </head>
 <body>
@@ -72,11 +101,17 @@ summary small{display:block;color:var(--mut);font-weight:400}
   <div id="start" class="card">
     <h1>Угадай флаг</h1>
     <p>4 варианта на выбор. Одна ошибка — и игра окончена.</p>
-    <p>Чем быстрее ответ, тем больше баллов: до 200 за раунд.</p>
-    <div class="cnt"><label for="n">Количество флагов: <b id="nv">20</b></label><input type="range" id="n" min="10" max="200" value="20"><div class="pre" id="pre"></div></div><button class="big" id="go">Начать</button>
+    <div class="lv" id="lv"></div>
+    <div class="cnt">
+      <label for="n"><span>Количество флагов</span><span id="nv">20</span></label>
+      <input type="range" id="n" min="10" max="50" value="20">
+      <div class="pre" id="pre"></div>
+      <div class="info" id="info"></div>
+    </div>
+    <button class="big" id="go">Начать</button>
   </div>
   <div id="play" class="card hide">
-    <div class="hud"><span id="rd">1/20</span><span id="sc">0 баллов</span><span id="tm">0.0 с</span></div>
+    <div class="hud"><span id="rd">1/20</span><span id="sc">0 баллов</span><span id="tm">0 с</span></div>
     <div class="bar"><i id="pb"></i></div>
     <div class="flag" id="fl"></div>
     <div class="opts" id="op"></div>
@@ -90,46 +125,105 @@ summary small{display:block;color:var(--mut);font-weight:400}
 </section>
 
 <section id="stats" class="hide">
-  <div class="sum" id="sum"></div><div class="sec"><i style="background:#e0e7ff">🕒</i>Последние 10 игр</div><div id="hist"></div>
-  <div class="sec"><i style="background:#fef3c7">🏆</i>Топ 10 рекордов</div><div id="top"></div>
+  <div class="sum" id="sum"></div>
+  <div class="sec"><i style="background:#e0e7ff">🕒</i>Последние 10 игр</div>
+  <div id="hist"></div>
+  <div class="sec"><i style="background:#fef3c7">🏆</i>Топ 10 рекордов</div>
+  <div id="top"></div>
 </section>
 </main>
 
 <script>
 const D="RU:Россия,US:США,GB:Великобритания,FR:Франция,DE:Германия,IT:Италия,ES:Испания,PT:Португалия,NL:Нидерланды,BE:Бельгия,CH:Швейцария,AT:Австрия,SE:Швеция,NO:Норвегия,FI:Финляндия,DK:Дания,IS:Исландия,IE:Ирландия,PL:Польша,CZ:Чехия,SK:Словакия,HU:Венгрия,RO:Румыния,BG:Болгария,GR:Греция,TR:Турция,UA:Украина,BY:Беларусь,LT:Литва,LV:Латвия,EE:Эстония,MD:Молдова,RS:Сербия,HR:Хорватия,SI:Словения,BA:Босния и Герцеговина,ME:Черногория,MK:Северная Македония,AL:Албания,GE:Грузия,AM:Армения,AZ:Азербайджан,KZ:Казахстан,UZ:Узбекистан,KG:Киргизия,TJ:Таджикистан,TM:Туркменистан,CN:Китай,JP:Япония,KR:Южная Корея,KP:Северная Корея,MN:Монголия,IN:Индия,PK:Пакистан,BD:Бангладеш,TH:Таиланд,VN:Вьетнам,ID:Индонезия,MY:Малайзия,SG:Сингапур,PH:Филиппины,IR:Иран,IQ:Ирак,SA:Саудовская Аравия,AE:ОАЭ,IL:Израиль,EG:Египет,ZA:ЮАР,NG:Нигерия,KE:Кения,ET:Эфиопия,MA:Марокко,DZ:Алжир,TN:Тунис,CA:Канада,MX:Мексика,BR:Бразилия,AR:Аргентина,CL:Чили,CO:Колумбия,PE:Перу,VE:Венесуэла,CU:Куба,AU:Австралия,NZ:Новая Зеландия,CY:Кипр,LU:Люксембург,MT:Мальта,NP:Непал,LK:Шри-Ланка,AF:Афганистан,QA:Катар,JO:Иордания,LB:Ливан,GH:Гана,SN:Сенегал,UY:Уругвай,EC:Эквадор,BO:Боливия,PY:Парагвай,JM:Ямайка,AD:Андорра,MC:Монако,LI:Лихтенштейн,SM:Сан-Марино,VA:Ватикан,XK:Косово,SY:Сирия,YE:Йемен,OM:Оман,KW:Кувейт,BH:Бахрейн,MM:Мьянма,KH:Камбоджа,LA:Лаос,BN:Бруней,TL:Восточный Тимор,BT:Бутан,MV:Мальдивы,TW:Тайвань,PS:Палестина,LY:Ливия,SD:Судан,SS:Южный Судан,SO:Сомали,DJ:Джибути,ER:Эритрея,UG:Уганда,TZ:Танзания,RW:Руанда,BI:Бурунди,CD:ДР Конго,CG:Республика Конго,GA:Габон,GQ:Экваториальная Гвинея,CM:Камерун,CF:ЦАР,TD:Чад,NE:Нигер,ML:Мали,BF:Буркина-Фасо,MR:Мавритания,GM:Гамбия,GW:Гвинея-Бисау,GN:Гвинея,SL:Сьерра-Леоне,LR:Либерия,CI:Кот-д’Ивуар,TG:Того,BJ:Бенин,AO:Ангола,ZM:Замбия,ZW:Зимбабве,MW:Малави,MZ:Мозамбик,MG:Мадагаскар,MU:Маврикий,SC:Сейшелы,KM:Коморы,CV:Кабо-Верде,ST:Сан-Томе и Принсипи,NA:Намибия,BW:Ботсвана,SZ:Эсватини,LS:Лесото,GT:Гватемала,BZ:Белиз,SV:Сальвадор,HN:Гондурас,NI:Никарагуа,CR:Коста-Рика,PA:Панама,DO:Доминиканская Республика,HT:Гаити,BS:Багамы,BB:Барбадос,TT:Тринидад и Тобаго,GY:Гайана,SR:Суринам,AG:Антигуа и Барбуда,DM:Доминика,GD:Гренада,KN:Сент-Китс и Невис,LC:Сент-Люсия,VC:Сент-Винсент и Гренадины,PG:Папуа — Новая Гвинея,FJ:Фиджи,WS:Самоа,TO:Тонга,VU:Вануату,SB:Соломоновы Острова,KI:Кирибати,TV:Тувалу,NR:Науру,FM:Микронезия,MH:Маршалловы Острова,PW:Палау".split(",").map(s=>{const[c,n]=s.split(":");return{c,n}});
 const NAME=Object.fromEntries(D.map(x=>[x.c,x.n]));
-const emoji=c=>String.fromCodePoint(...[...c].map(x=>127397+x.charCodeAt(0)));
+
+// Уровни сложности: 1 — самые известные, 4 — неизвестные. Пулы не пересекаются.
+const LV=[
+  {n:"Известные",d:"Страны, которые знает почти каждый"},
+  {n:"Знакомые",d:"Средне известные страны"},
+  {n:"Редкие",d:"Менее известные страны"},
+  {n:"Неизвестные",d:"Маленькие и самые сложные"},
+  {n:"Все флаги",d:"Все страны вместе, без уровней"}
+];
+const T={
+ 1:"RU US GB FR DE IT ES PT NL BE CH AT SE NO FI DK PL UA CN JP KR IN BR AR CA MX AU NZ TR EG ZA IL SA AE TH GR CZ IE",
+ 2:"BY LT LV EE MD RS HR SI BA MK AL GE AM AZ KZ UZ MN PK BD MY SG PH IQ JO LB QA GH SN KE ET MA DZ TN CO PE VE CU CL EC UY BO PY CY LU MT IS RO BG HU SK LK NP AF KP ID JM VN IR",
+ 4:"AD MC LI SM VA XK SS CF BI RW DJ ER SO GQ GW ST KM SC MU MV BN BT TL KI TV NR FM MH PW WS TO VU SB VC LC KN AG DM GD BB BS HT SR GY TT"
+};
+const TIER={};for(const k in T)T[k].split(" ").forEach(c=>TIER[c]=+k);
+const pool=lv=>lv===5?D:D.filter(x=>(TIER[x.c]||3)===lv);
+
 const $=id=>document.getElementById(id);
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
-
+const emoji=c=>String.fromCodePoint(...[...c].map(x=>127397+x.charCodeAt(0)));
 const mem={};
 const load=k=>{try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return mem[k]||[]}};
 const save=(k,v)=>{mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 
-let TOTAL=20;
-let q,i,correct,score,t0,r0,timer,lock,log;
+// Очки: за игру максимум 1000 базовых × множитель. Базовые очки на флаг = 1000 / N.
+// Множитель: 10 флагов = 1x, 20 = 1.2x, 40 = 1.4x, 80 = 1.6x и т.д.
+const mult=n=>+(1+0.2*Math.log2(n/10)).toFixed(2);
+const ptsFor=(n,dt)=>Math.round((1000/n)*(0.5+0.5*Math.max(0,1-dt/6000))*mult(n));
+
+const fmtT=ms=>{
+  if(ms<60000)return (ms/1000).toFixed(2)+" с";
+  const m=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000);
+  return m+"м "+s+"с";
+};
+const errRate=(c,lost)=>lost?(c?Math.round(1/c*100):100):0;
+const dt=t=>new Date(t).toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});
+
+let LVL=1,TOTAL=20,q,i,correct,score,t0,r0,timer,lock,log,M=1;
+
+function buildSetup(){
+  $("lv").innerHTML=LV.map((l,k)=>'<button data-l="'+(k+1)+'" class="'+(LVL===k+1?"on":"")+'"><b>'+(k+1)+'. '+l.n+'</b><small>'+l.d+'</small></button>').join("");
+  $("lv").querySelectorAll("button").forEach(b=>b.onclick=()=>{LVL=+b.dataset.l;buildSetup()});
+  const max=pool(LVL).length;
+  const N=$("n");N.max=max;
+  if(+N.value>max)N.value=max;
+  if(+N.value<10)N.value=10;
+  TOTAL=+N.value;
+  $("nv").textContent=TOTAL;
+  const presets=[10,20,50,100].filter(v=>v<max).concat([max]);
+  $("pre").innerHTML="";
+  presets.forEach(v=>{
+    const b=document.createElement("button");
+    b.textContent=v===max?"Все ("+v+")":v;
+    b.className=TOTAL===v?"on":"";
+    b.onclick=()=>{N.value=v;TOTAL=v;$("nv").textContent=v;buildSetup()};
+    $("pre").appendChild(b);
+  });
+  const m=mult(TOTAL);
+  $("info").innerHTML="Уровень: <b>"+LV[LVL-1].n+"</b> · доступно флагов: <b>"+max+"</b><br>Множитель: <b>×"+m+"</b> · баллов за флаг: <b>до "+Math.round(1000/TOTAL*m)+"</b> · максимум за игру: <b>"+Math.round(1000*m)+"</b>";
+}
+
+$("n").oninput=function(){TOTAL=+this.value;buildSetup()};
+$("n").onchange=function(){TOTAL=+this.value;buildSetup()};
 
 const show=id=>{["start","play","end"].forEach(x=>$(x).classList.toggle("hide",x!==id))};
-const fmt=ms=>(ms/1000).toFixed(2)+" с";
 
 function startGame(){
-  TOTAL=+$("n").value;q=shuffle(D).slice(0,TOTAL);i=0;correct=0;score=0;log=[];
+  const P=pool(LVL);
+  TOTAL=Math.min(TOTAL,P.length);
+  M=mult(TOTAL);
+  q=shuffle(P).slice(0,TOTAL);i=0;correct=0;score=0;log=[];
   t0=performance.now();
   clearInterval(timer);
-  timer=setInterval(()=>{$("tm").textContent=((performance.now()-t0)/1000).toFixed(1)+" с"},100);
+  timer=setInterval(()=>{$("tm").textContent=fmtT(performance.now()-t0)},100);
   show("play");round();
 }
 
 function round(){
   lock=false;
   const cur=q[i];
-  const opts=shuffle([cur,...shuffle(D.filter(x=>x!==cur)).slice(0,3)]);
+  const P=pool(LVL);
+  const opts=shuffle([cur,...shuffle(P.filter(x=>x!==cur)).slice(0,3)]);
   $("rd").textContent=(i+1)+"/"+TOTAL;
   $("sc").textContent=score+" баллов";
   $("pb").style.width=(i/TOTAL*100)+"%";
   const f=$("fl");f.textContent=emoji(cur.c);f.classList.remove("a");void f.offsetWidth;f.classList.add("a");
   $("op").innerHTML="";
-  opts.forEach((o,k)=>{
+  opts.forEach(o=>{
     const b=document.createElement("button");
     b.textContent=o.n;b.dataset.c=o.c;
     b.onclick=()=>answer(b,o.c);
@@ -140,11 +234,11 @@ function round(){
 
 function answer(btn,c){
   if(lock)return;lock=true;
-  const cur=q[i],dt=performance.now()-r0;
+  const cur=q[i],d=performance.now()-r0;
   if(c===cur.c){
     btn.classList.add("ok");
     correct++;
-    score+=100+Math.max(0,100-Math.round(dt/50));
+    score+=ptsFor(TOTAL,d);
     log.push([cur.c,1]);
     $("sc").textContent=score+" баллов";
     i++;
@@ -161,9 +255,8 @@ function answer(btn,c){
 function finish(win){
   clearInterval(timer);
   const ms=performance.now()-t0;
-  const rec={t:Date.now(),n:TOTAL,s:score,c:correct,ms:Math.round(ms),win,list:log};
-  const hist=[rec,...load("flag_hist")].slice(0,10);
-  save("flag_hist",hist);
+  const rec={t:Date.now(),lv:LVL,n:TOTAL,s:score,c:correct,ms:Math.round(ms),win,list:log};
+  save("flag_hist",[rec,...load("flag_hist")].slice(0,10));
   const top=[...load("flag_top"),rec].sort((a,b)=>b.s-a.s||a.ms-b.ms).slice(0,10);
   save("flag_top",top);
   const place=top.findIndex(r=>r===rec||(r.t===rec.t&&r.s===rec.s));
@@ -171,30 +264,47 @@ function finish(win){
   $("et").textContent=win?"Победа!":"Игра окончена";
   $("es").textContent=score+" баллов";
   $("ec").textContent=correct+"/"+TOTAL;
-  $("etm").textContent=fmt(ms);
+  $("etm").textContent=fmtT(ms);
   $("er").textContent=place>=0?"№"+(place+1):"—";
   show("end");
 }
 
-function dt(t){return new Date(t).toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})}
-
 function render(list,box,rank){
   if(!list.length){box.innerHTML='<p class="empty">Пока нет сыгранных игр.</p>';return}
   box.innerHTML=list.map((r,n)=>{
+    const lost=r.win?0:1;
+    const rate=errRate(r.c,lost);
+    const bad=r.list.filter(x=>!x[1]).map(x=>'<em class="md">'+emoji(x[0])+"</em> "+NAME[x[0]]).join(", ");
     const chips=r.list.map(([c,ok])=>'<span class="'+(ok?"y":"x")+'"><em>'+emoji(c)+"</em> "+NAME[c]+"</span>").join("");
-    const nn=r.n||20,pc=Math.round(r.c/nn*100),bad=r.list.filter(x=>!x[1]).map(x=>'<em class="md">'+emoji(x[0])+"</em> "+NAME[x[0]]),rk=rank?(n<3?'<span class="rk"><em class="md">'+["🥇","🥈","🥉"][n]+"</em></span>":'<span class="rk">'+(n+1)+"</span>"):"";
-    return '<details class="gm'+(r.win?"":" lose")+(rank&&n<3?" t"+(n+1):"")+'"><summary>'+rk+'<div class="mn"><div class="pt">'+r.s.toLocaleString("ru-RU")+' <span>баллов</span><b class="bg">'+(r.win?"Победа":"Поражение")+"</b></div>"
-      +'<div class="mt"><span>🎯 '+r.c+"/"+nn+"</span><span>⏱ "+fmt(r.ms)+"</span><span>🕒 "+dt(r.t)+'</span></div><div class="acc"><i style="width:'+pc+'%"></i></div></div><span class="ch">›</span></summary>'
-     +(bad.length?'<div class="er">Ошибка: '+bad.join(", ")+"</div>":"")
-      +'<div class="chips">'+chips+"</div></details>";
+    const medal=rank&&n<3?'<em class="md">'+["🥇","🥈","🥉"][n]+"</em>":"";
+    const rk=rank?'<span class="rk">'+(n<3?medal:(n+1))+"</span>":"";
+    const lvName=LV[(r.lv||1)-1].n;
+    return '<details class="gm'+(r.win?"":" lose")+(rank&&n<3?" t"+(n+1):"")+'"><summary>'+rk
+      +'<div class="mn"><div class="pt">'+r.s.toLocaleString("ru-RU")+' <span>баллов</span><b class="bg">'+(r.win?"Победа":"Поражение")+'</b></div>'
+      +'<div class="mt"><span>🎯 '+r.c+"/"+r.n+'</span><span>⏱ '+fmtT(r.ms)+'</span><span>📊 '+lvName+" · "+r.n+' фл.</span></div>'
+      +'<div class="mt"><span>🕒 '+dt(r.t)+'</span></div>'
+      +'<div class="acc"><i style="width:'+Math.round(r.c/r.n*100)+'%"></i></div></div><span class="ch">›</span></summary>'
+      +'<div class="body"><div class="errs">Ошибки: <b>'+lost+" / "+r.c+" = "+rate+'%</b></div>'
+      +(bad?'<div class="er" style="padding:0 0 8px">Ошибка на: '+bad+"</div>":"")
+      +'<div class="chips">'+chips+"</div></div></details>";
   }).join("");
 }
 
 function showStats(){
-  render(load("flag_hist"),$("hist"),false);
-  render(load("flag_top"),$("top"),true);
-  const h=load("flag_hist"),t=load("flag_top"),w=h.filter(r=>r.win),bt=w.length?Math.min(...w.map(r=>r.ms)):0,tot=h.reduce((a,r)=>a+(r.n||20),0);
-  $("sum").innerHTML=h.length?[["s1","Лучший счёт",t[0]?t[0].s.toLocaleString("ru-RU"):"—","рекорд"],["s2","Лучшее время победы",bt?fmt(bt):"—","среди последних игр"],["s3","Побед",w.length+" из "+h.length,"последние игры"],["s4","Точность",Math.round(h.reduce((a,r)=>a+r.c,0)/tot*100)+"%","верных ответов"]].map(a=>'<div class="'+a[0]+'"><small>'+a[1]+"</small><b>"+a[2]+"</b><small>"+a[3]+"</small></div>").join(""):"";
+  const h=load("flag_hist"),t=load("flag_top");
+  const w=h.filter(r=>r.win);
+  const bt=w.length?Math.min(...w.map(r=>r.ms)):0;
+  const losses=h.filter(r=>!r.win).length;
+  const corr=h.reduce((a,r)=>a+r.c,0);
+  const er=corr?Math.round(losses/corr*100):0;
+  $("sum").innerHTML=h.length?[
+    ["s1","Лучший счёт",t[0]?t[0].s.toLocaleString("ru-RU"):"—","рекорд"],
+    ["s2","Лучшее время победы",bt?fmtT(bt):"—","среди последних игр"],
+    ["s3","Побед",w.length+" из "+h.length,"последние игры"],
+    ["s4","Ошибки",er+"%","ошибок / верных ответов"]
+  ].map(a=>'<div class="'+a[0]+'"><small>'+a[1]+"</small><b>"+a[2]+"</b><small>"+a[3]+"</small></div>").join(""):"";
+  render(h,$("hist"),false);
+  render(t,$("top"),true);
 }
 
 function tab(stat){
@@ -207,10 +317,6 @@ function tab(stat){
 
 $("tg").onclick=()=>tab(false);
 $("ts").onclick=()=>tab(true);
-const N=$("n");N.max=D.length;
-const setN=v=>{N.value=v;$("nv").textContent=v};
-N.oninput=()=>setN(N.value);
-[10,20,50,100,D.length].forEach(v=>{const b=document.createElement("button");b.textContent=v===D.length?"Все ("+v+")":v;b.onclick=()=>setN(v);$("pre").appendChild(b)});
 $("go").onclick=startGame;
 $("again").onclick=startGame;
 document.addEventListener("keydown",e=>{
@@ -218,6 +324,7 @@ document.addEventListener("keydown",e=>{
     const b=$("op").children[+e.key-1];if(b)b.click();
   }
 });
+buildSetup();
 </script>
 </body>
 </html>
